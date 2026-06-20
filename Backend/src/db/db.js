@@ -1,26 +1,15 @@
+import mongoose from "mongoose";
 
-import {MongoClient} from "mongodb"
-
-export let dbo;
-
-
-async function db() {
+async function connectdb() {
     try {
-        
-     const client = new MongoClient(process.env.MONGO_DB_KEY)
-      
-     await client.connect();
+        await mongoose.connect(process.env.MongoUrl);
+        console.log("Let Go DateBase is Connected");
 
-     dbo = client.db("Approach_Native_MongoDB_Driver")
-     
-     console.log("Connected to MongoDB");
-     
 
     } catch (error) {
         console.log(error);
         
     }
+};
 
-}
-
-export default db; 
+export default connectdb;

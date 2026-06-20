@@ -11,6 +11,7 @@ const Login = () => {
         password: '',
     })
 
+
     const onhandleinput = (event, stateName) => {
         setloginform((pervstate) => ({ ...pervstate, [stateName]: event.target.value }))
 
@@ -18,26 +19,25 @@ const Login = () => {
 
     const onFormSumbit = async (event) => {
         event.preventDefault();
-        
-        try {
 
-            const resp = await fetch("http://localhost:3000/student/", {
+        try {
+            const resp = await fetch('http://localhost:3000/api/auth/login-Account', {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json",
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(loginform),
+                body: JSON.stringify({
+                    email: loginform.email,
+                    password: loginform.password
+                })
             });
 
-            const date = await resp.json()
-            
+            const data = await resp.json();
+            console.log(data);
         } catch (error) {
-
             console.log(error);
-
         }
-
-    }
+    };
 
     return (
         <Container
@@ -67,11 +67,12 @@ const Login = () => {
                     variant="h4"
                     fontWeight="bold"
                     color="primary"
+
                 >
                     Login
                 </Typography>
 
-                <form action="" onSubmit={onFormSumbit}>
+                <form onSubmit={onFormSumbit}>
                     <FormControl
                         sx={{
                             display: "flex",
@@ -113,7 +114,7 @@ const Login = () => {
                 <Typography variant="body2" >
                     Don't have an account?{""}
                     <Link
-                        to="/signup"
+                        to="/"
                         style={{
                             color: "#1976d2",
                             textDecoration: "none",
