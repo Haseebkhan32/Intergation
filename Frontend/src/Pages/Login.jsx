@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Container, Box, TextField, Button, Typography, FormControl } from '@mui/material';
 import { flex, height } from '@mui/system';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
@@ -10,6 +10,8 @@ const Login = () => {
         email: '',
         password: '',
     })
+    const navigate = useNavigate();
+
 
 
     const onhandleinput = (event, stateName) => {
@@ -34,6 +36,9 @@ const Login = () => {
 
             const data = await resp.json();
             console.log(data);
+            navigate("/");
+
+
         } catch (error) {
             console.log(error);
         }
