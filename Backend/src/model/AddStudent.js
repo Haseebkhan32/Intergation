@@ -5,8 +5,8 @@ const addUserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  age: {
-    type: Number,
+  fathername: {
+    type: String,
     required: true,
   },
   email: {
@@ -14,19 +14,19 @@ const addUserSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  age: {
+    type: Number,
+    required: true,
+  },
   phonenumber: {
     type: Number,
     required: true,
   },
   studentclass: {
-    type: Number,
-    required: true,
-  },
-  section: {
     type: String,
     required: true,
   },
-  fathername: {
+  section: {
     type: String,
     required: true,
   },
@@ -36,6 +36,6 @@ const addUserSchema = new mongoose.Schema({
   },
 });
 
-const userModel = mongoose.model("AddStudent", addUserSchema )
+const userModel = mongoose.model("AddStudent", addUserSchema)
 
 export default userModel;
